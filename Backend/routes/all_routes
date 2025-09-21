@@ -1,0 +1,825 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+SET-1
+
+Part I – Software Requirement Specification (SRS) [10 Marks]
+A restaurant wants to develop an Online Food Ordering System (OFOS) to handle menu browsing, food ordering, payments, and delivery tracking. Based on this case:
+1.	What should be the purpose of this project? Write a short abstract explaining it. [2M]
+2.	If you were designing this system, what key features (functional requirements) would you include to solve these problems? [2M]
+3.	How should the system behave in terms of non-functional requirements? [2M]
+4.	Who are the different types of users that would interact with the system, and how would each use it? [2M]
+5.	How would you break this system into modules? [2M]
+
+Part II – Maven Web Application Development [25 Marks]
+You are given a GitHub repository link for the OFOS project. You are given the following    GitHub repository link:
+https://github.com/vam1207/OFOS.git
+ You have imported it into Eclipse/IntelliJ.
+1.	The project fails to build due to dependency errors. Fix the errors in the pom.xml. [8M]
+2.	The app is running on Java 8, but your team has migrated to Java 17. Update Maven configuration accordingly. [2M]
+3.	A teammate updated pom.xml with a new dependency, but your local Maven cache still uses the old version. How will you force Maven to update it? [2M]
+4.	You want to skip tests during Maven build to save time. Which command or configuration will you use? [5M]
+5.	Maven shows a dependency conflict between two versions of the same library. How can you resolve it? [5M]
+6.	You need to add JSTL support for JSP pages. Which Maven dependencies will you include? [3M]
+
+Part III – Git & GitHub Integration [15 Marks]
+You are working with GitHub on menu.jsp of OFOS project. Using Git, handle these scenarios:
+1.	You start coding a new feature but realize the project is not under version control. Initialize a Git repo and push it to GitHub. [5M]
+2.	You accidentally wrote “Added Payement Module” instead of “Added Payment Module” in your commit message. Since you haven’t pushed yet, how do you fix it? [2M]
+3.	You need to check which files have been modified but not yet committed. Which Git command will you use? [1M]
+4.	You want to quickly see the history of commits in a compact view. Which command will you use? [2M]
+5.	You deleted menu.jsp by mistake but haven’t committed yet. How do you recover it from Git? [2M]
+6.	You want to clone your teammate’s repo and switch directly to the feature-payment branch. Which steps will you follow? [3M]
+
+Part IV – Git Collaboration, Patch & Merge Conflict Resolution [20 Marks]
+You and your teammate are coding OFOS from two different GitHub accounts. Handle these scenarios:
+1.	You are assigned to add a delivery tracking feature without affecting the main code. Create a branch named feature/delivery and switch to it. [3M]
+2.	You want to list all branches (local and remote) to check available branches. Which Git command will you use? [2M]
+3.	You accidentally created the branch in the wrong location. How do you delete the local branch feature/delivery safely? [2M]
+4.	A bug is found in OrderServlet.java. Create a patch file and share it with your teammate. [5M]
+5.	Your teammate sent you a patch file. How do you apply it to your local repository? [3M]
+6.	You want to combine multiple commits into one before pushing to the main repository. Which Git command helps? [3M]
+7.	You want to make a local copy of a remote repository to your machine so you can work on it. [2M]
+
+Part V – Dockerization of Maven Application [15 Marks]
+Your OFOS application is complete, but deployment must be containerized:
+1.	Write a Dockerfile to build a Docker image for OFOS using Maven. [5M]
+2.	Build the image and run the container. Verify OFOS works at http://localhost:8080. [5M]
+3.	Your manager wants the same app to run on another developer’s machine. Push the image to Docker Hub. [5M]
+
+Part VI – Docker Compose Multi-Container Setup [15 Marks]
+Now the OFOS must work with a database backend using Docker Compose:
+1.	Write a docker-compose.yml file with two services: [5M]
+o	Service 1: Your OFOS Docker image (from Docker Hub).
+o	Service 2: A MySQL database with username ofos_user, password ofos_pass, and DB name ofos_db.
+2.	How do you run both containers? [2M]
+3.	Suppose you make changes in OFOS Docker image, how do you rebuild the service using Docker Compose? [3M]
+4.	Verify orders data persists after restarting containers. [3M]
+5.	You want to stop all running containers but keep the data volume. Which command will you use? [2M]
+                                                             
+
+
+
+
+                                                                           KEY 
+
+Part I – Software Requirement Specification (SRS) [10 Marks]
+1.	Abstract [2M]
+The purpose of the Student Course Management System (SCMS) is to automate course registrations, attendance, grading, and scheduling. It provides timely notifications to students, simplifies reporting for faculty, and ensures smooth academic management.
+2.	Functional Requirements (any 5) [2M]
+o	Student course registration and enrollment.
+o	Attendance tracking system.
+o	Grade management (upload & view results).
+o	Automated notifications for deadlines.
+o	Schedule management (class timetable, exams).
+3.	Non-Functional Requirements (any 5) [2M]
+o	Usability: User-friendly interface.
+o	Performance: Quick response even with 1000+ users.
+o	Security: Role-based login for students/faculty/admin.
+o	Scalability: Should support more students in future.
+o	Availability: 99% uptime during semesters.
+4.	Users [2M]
+o	Students: Register, view courses, check grades.
+o	Faculty: Mark attendance, upload grades, manage schedules.
+o	Admin: Manage courses, users, system settings.
+5.	Modules [2M]
+o	Registration Module
+o	Attendance Module
+o	Grade Management Module
+o	Notifications Module
+o	Schedule/Timetable Module
+
+
+
+Part II – Maven Web Application Development [25 Marks]
+
+1.	Fix pom.xml errors [8M]
+Add correct <dependencies>, ensure <packaging>war</packaging>, use plugins for Java 17 (see pom.xml provided).
+2.	Update Java 17 config [2M]
+3.	<maven.compiler.source>17</maven.compiler.source>
+4.	<maven.compiler.target>17</maven.compiler.target>
+5.	Force Maven update [2M]
+6.	mvn clean install -U
+7.	Skip tests [5M]
+8.	mvn clean package -DskipTests
+OR in pom.xml:
+<skipTests>true</skipTests>
+9.	Resolve dependency conflict [5M]
+o	Use <dependencyManagement> to specify version.
+o	Or use <exclusions> to avoid duplicate jars.
+10.	JSTL dependency [3M]
+11.	<dependency>
+12.	    <groupId>javax.servlet</groupId>
+13.	    <artifactId>jstl</artifactId>
+14.	    <version>1.2</version>
+15.	</dependency>
+
+Part III – Git & GitHub Integration [15 Marks]
+1.	Init repo & push [5M]
+2.	git init
+3.	git add .
+4.	git commit -m "Initial commit"
+5.	git remote add origin <repo-URL>
+6.	git push -u origin main
+7.	Fix commit message [2M]
+8.	git commit --amend -m "Added Login Page"
+9.	Check modified files [1M]
+10.	git status
+11.	Compact history [2M]
+12.	git log --oneline
+13.	Recover deleted index.jsp [2M]
+14.	git checkout -- index.jsp
+15.	Clone repo & switch branch [3M]
+16.	git clone <repo-url>
+17.	cd <repo-folder>
+18.	git checkout feature-branch
+
+Part IV – Git Collaboration, Patch & Merge Conflict [20 Marks]
+1.	Create & switch branch [3M]
+2.	git checkout -b feature/login
+3.	List branches [2M]
+4.	git branch -a
+5.	Delete branch [2M]
+6.	git branch -d feature/login
+7.	Create patch [5M]
+8.	git diff > bugfix.patch
+9.	Apply patch [3M]
+10.	git apply bugfix.patch
+11.	Squash commits [3M]
+12.	git rebase -i HEAD~n
+13.	Clone repo [2M]
+14.	git clone <repo-url>
+
+
+
+
+Part V – Dockerization [15 Marks]
+1.	Dockerfile [5M]
+
+2.	Build & Run [5M]
+3.	docker build -t scms-app .
+4.	docker run -p 8080:8080 scms-app
+5.	Push to Docker Hub [5M]
+6.	docker tag scms-app username/scms-app:v1
+7.	docker push username/scms-app:v1
+
+
+Part VI – Docker Compose [15 Marks]
+1.	docker-compose.yml [5M]
+Run both containers [2M]
+2.	docker-compose up --build
+3.	Rebuild after changes [3M]
+4.	docker-compose up --build --force-recreate
+5.	Verify persistence [3M]
+Insert data → restart containers → data still available (volume ensures persistence).
+6.	Stop all containers but keep data [2M]
+docker-compose down
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+SET-2: Clinic Management System (CMS)
+
+Part I – Software Requirement Specification (SRS) [10 Marks]
+A small clinic wants to develop a Clinic Management System (CMS) to handle patient registrations, doctor appointments, treatment records, and billing. Currently, staff manually record visits and generate bills, leading to delays and errors. Patients often miss appointments because reminders are not automated.
+Answer the following:
+1.	What is the purpose of this project? Write a short abstract explaining it. [2M]
+2.	List functional requirements (minimum 5) to solve the clinic’s problems. [2M]
+3.	List non-functional requirements (minimum 5) describing how the system should behave. [2M]
+4.	Identify the different users of the system and explain how each would interact with it. [2M]
+5.	Suggest modules to divide the CMS application into manageable parts. [2M]
+
+Part II – Maven Web Application Development [25 Marks]
+You are given a Maven-based Clinic Management System project.
+https://github.com/vam1207/CMS.git
+ The project allows managing patients, doctors, appointments, and billing.
+Answer the following:
+1.	The project fails to build. How will you fix the pom.xml to resolve dependency errors? [8M]
+2.	The application was using Java 8, but now it should run on Java 19. How will you update Maven configuration? [2M]
+3.	A teammate updated a dependency, but your local Maven cache uses the old version. How do you force Maven to update? [2M]
+4.	You want to skip tests during Maven build. Which command or configuration will you use? [5M]
+5.	Maven shows a dependency conflict. How can you resolve it? [5M]
+6.	You want to use JSTL in JSP pages. Which Maven dependencies will you include? [3M]
+
+Part III – Git & GitHub Integration [15 Marks]
+You are working with GitHub on the CMS project. Handle these scenarios:
+1.	You start coding a new feature but the project is not under version control. How do you initialize Git and push to GitHub? [5M]
+2.	You accidentally wrote “Added Appointment Pagee” instead of “Added Appointment Page” in the commit message. You haven’t pushed yet. How do you fix it? [2M]
+3.	Check which files have been modified but not committed. Which Git command will you use? [1M]
+4.	See commit history in a compact view. Which command will you use? [2M]
+5.	You deleted PatientServlet.java by mistake but haven’t committed. How do you recover it? [2M]
+6.	You want to clone a teammate’s repo and switch directly to feature/appointment-module branch. What steps will you follow? [3M]
+
+Part IV – Git Collaboration, Patch & Merge Conflict Resolution [20 Marks]
+Two developers are working on CMS from different GitHub accounts:
+1.	You are assigned to add a doctor availability feature without affecting main. Create branch feature/availability and switch to it. [3M]
+2.	List all local and remote branches. Which command will you use? [2M]
+3.	You accidentally created the branch in the wrong location. How do you delete feature/availability safely? [2M]
+4.	A bug is found in BillingModule.java. Create a patch file and share it with your teammate. [5M]
+5.	Your teammate sent you a patch. How do you apply it locally? [3M]
+6.	You want to combine multiple commits into one before pushing. Which Git command helps? [3M]
+7.	Make a local copy of a remote repository to work on it. Which command will you use? [2M]
+
+Part V – Dockerization of Maven Application [15 Marks]
+You want to containerize CMS:
+1.	Write a Dockerfile to build a Docker image for CMS using Maven. [5M]
+2.	Build the image and run the container. Verify CMS works at http://localhost:9090. [5M]
+3.	Push the Docker image to Docker Hub to share with teammates. [5M]
+
+Part VI – Docker Compose Multi-Container Setup [15 Marks]
+CMS should work with a database backend:
+1.	Write docker-compose.yml with two services: [5M]
+o	Service 1: CMS Docker image
+o	Service 2: MySQL database with username clinic_user, password clinic_pass, and DB name clinic_db
+2.	How do you run both containers? [2M]
+3.	If you update CMS Docker image, how do you rebuild the service using Docker Compose? [3M]
+4.	Verify that patient and appointment data persists after restarting containers. [3M]
+5.	Stop all running containers but keep the data volume. Which command will you use? [2M]
+Answer Key – Set-2 (CMS)
+
+Part I – SRS [10M]
+1.	Abstract (Purpose) [2M]
+The Clinic Management System (CMS) is designed to manage patient registrations, doctor appointments, treatment history, and billing. It reduces manual errors, automates reminders, and provides accurate reports for better clinic operations.
+2.	Functional Requirements [2M]
+•	Patient registration and record management
+•	Appointment scheduling and cancellation
+•	Doctor availability and schedule management
+•	Billing and invoice generation
+•	Automated SMS/email reminders for patients
+3.	Non-Functional Requirements [2M]
+•	Secure login and role-based access
+•	Fast response time (<2 sec per action)
+•	Data should be backed up daily
+•	Scalable to handle 1000+ patients
+•	User-friendly interface for staff and doctors
+4.	Users [2M]
+•	Patients → Book appointments, view history, pay bills
+•	Doctors → Manage schedules, view patient details, update treatments
+•	Receptionist/Staff → Register patients, manage appointments, billing
+•	Admin → Manage users, system settings, reports
+5.	Modules [2M]
+•	Patient Management
+•	Appointment Scheduling
+•	Doctor Availability
+•	Billing & Payments
+•	Reports & Notifications
+
+Part II – Maven Web Application Development [25M]
+1.	Fix pom.xml errors [8M]
+•	Check for missing <dependencies> or <plugins> tags
+•	Add correct <groupId>, <artifactId>, <version>
+•	Ensure packaging = war
+•	Example dependency (JSTL):
+•	<dependency>
+•	  <groupId>javax.servlet</groupId>
+•	  <artifactId>jstl</artifactId>
+•	  <version>1.2</version>
+•	</dependency>
+2.	Update Java version to 19 [2M]
+<properties>
+  <maven.compiler.source>19</maven.compiler.source>
+  <maven.compiler.target>19</maven.compiler.target>
+</properties>
+3.	Force Maven to update dependencies [2M]
+mvn clean install -U
+4.	Skip tests in Maven build [5M]
+Command:
+mvn clean package -DskipTests
+5.	Resolve dependency conflict [5M]
+•	Use <dependencyManagement> to force a version
+•	Or use <exclusions> to remove transitive conflict
+6.	Add JSTL dependency [3M]
+<dependency>
+  <groupId>javax.servlet</groupId>
+  <artifactId>jstl</artifactId>
+  <version>1.2</version>
+</dependency>
+
+Part III – Git & GitHub Integration [15M]
+1.	Initialize Git & push [5M]
+git init
+git add .
+git commit -m "Initial commit: CMS project"
+git branch -M main
+git remote add origin https://github.com/username/CMS.git
+git push -u origin main
+2.	Fix wrong commit message [2M]
+git commit --amend -m "Added Appointment Page"
+3.	Check modified but uncommitted files [1M]
+git status
+4.	Compact commit history [2M]
+git log --oneline
+5.	Recover deleted file before commit [2M]
+git checkout -- PatientServlet.java
+6.	Clone and switch branch [3M]
+git clone https://github.com/teammate/CMS.git
+cd CMS
+git checkout feature/appointment-module
+
+Part IV – Git Collaboration, Patch & Merge Conflict [20M]
+1.	Create feature branch [3M]
+git checkout -b feature/availability
+2.	List all branches [2M]
+git branch -a
+3.	Delete local branch [2M]
+git branch -d feature/availability
+4.	Create patch file [5M]
+git diff > bugfix.patch
+5.	Apply teammate’s patch [3M]
+git apply bugfix.patch
+6.	Combine commits (squash) [3M]
+git rebase -i HEAD~3
+7.	Clone remote repo [2M]
+git clone https://github.com/username/CMS.git
+
+Part V – Dockerization of Maven Application [15M]
+1.	Dockerfile [5M]
+FROM maven:3.9.6-eclipse-temurin-19 AS build
+WORKDIR /app
+COPY . .
+RUN mvn clean package -DskipTests
+
+FROM tomcat:10.1-jdk19
+COPY --from=build /app/target/CMS.war /usr/local/tomcat/webapps/CMS.war
+EXPOSE 9090
+CMD ["catalina.sh", "run"]
+2.	Build & Run [5M]
+docker build -t cms-app .
+docker run -p 9090:9090 cms-app
+3.	Push to Docker Hub [5M]
+docker tag cms-app username/cms-app:latest
+docker push username/cms-app:latest
+
+Part VI – Docker Compose Multi-Container Setup [15M]
+1.	docker-compose.yml [5M]
+version: '3'
+services:
+  cms-app:
+    image: username/cms-app:latest
+    ports:
+      - "9090:9090"
+    depends_on:
+      - mysql-db
+
+  mysql-db:
+    image: mysql:8
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpass
+      MYSQL_USER: clinic_user
+      MYSQL_PASSWORD: clinic_pass
+      MYSQL_DATABASE: clinic_db
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+volumes:
+  mysql_data:
+2.	Run both containers [2M]
+docker-compose up -d
+3.	Rebuild service after update [3M]
+docker-compose build cms-app
+docker-compose up -d
+4.	Verify data persistence [3M]
+Restart containers:
+docker-compose down
+docker-compose up -d
+Data remains due to volume.
+5.	Stop containers but keep data [2M]
+docker-compose down
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+set-3
+Part I – Software Requirement Specification (SRS) [10 Marks]
+A city hospital is facing challenges in handling patient appointments, doctor availability, billing, and reports. Patients often face long queues because booking is manual, while doctors find it difficult to track schedules and patient records. To solve these issues, the hospital wants to develop a digital Hospital Appointment Management System (HAMS).
+Questions:
+1.	Write a short abstract describing the purpose of HAMS. [2M]
+2.	List at least 5 functional requirements (features). [2M]
+3.	List at least 5 non-functional requirements. [2M]
+4.	Identify different types of users and how they will interact with the system. [2M]
+5.	Break the system into modules. [2M]
+
+Part II – Maven Web Application Development [25 Marks]
+You are developing the HAMS as a Maven-based Java Web Application.
+https://github.com/vam1207/HAMS.git
+1.	The project fails to build due to missing dependencies. How will you fix pom.xml? [8M]
+2.	The hospital server is now using Java 17 instead of Java 8. Update Maven configuration. [2M]
+3.	A teammate added a new dependency, but Maven keeps using the old cached one. How will you refresh it? [2M]
+4.	You want to skip JUnit tests temporarily during build. Which Maven command will you use? [5M]
+5.	If two dependencies conflict in version, how will you resolve it in Maven? [5M]
+6.	To enable JSP with JSTL in your app, which dependencies will you add? [3M]
+
+Part III – Git & GitHub Integration [15 Marks]
+You are collaborating on the HAMS project with GitHub.
+1.	Initialize Git in your project and push it to GitHub. [5M]
+2.	You wrote “Added Doctor Modul” instead of “Added Doctor Module” in a commit message. Since you haven’t pushed, how do you fix it? [2M]
+3.	Which Git command shows modified but not committed files? [1M]
+4.	Show Git command to view commit history in a compact one-line format. [2M]
+5.	You accidentally deleted AppointmentServlet.java but haven’t committed. How do you recover it? [2M]
+6.	Clone your teammate’s GitHub repo and switch directly to feature/patient branch. [3M]
+
+Part IV – Git Collaboration, Patch & Merge Conflict Resolution [20 Marks]
+1.	Create a new branch feature/billing and switch to it. [3M]
+2.	Show command to list both local and remote branches. [2M]
+3.	You mistakenly created feature/billing twice. Delete the extra local branch. [2M]
+4.	A bug is found in BillingService.java. Create a patch file and share it. [5M]
+5.	Your teammate sent you a patch. Apply it in your repo. [3M]
+6.	Combine multiple small commits into one before pushing. Which Git command will you use? [3M]
+7.	Clone the main hospital repo to your system. Which Git command will you use? [2M]
+
+Part V – Dockerization of Maven Application [15 Marks]
+1.	Write a Dockerfile for HAMS (Tomcat + WAR deployment). [5M]
+2.	Build the Docker image and run the container. Verify app at http://localhost:8081. [5M]
+3.	Push the Docker image to your Docker Hub. [5M]
+
+Part VI – Docker Compose Multi-Container Setup [15 Marks]
+1.	Write a docker-compose.yml with: [5M]
+o	Service 1: HAMS app container (on port 8081).
+o	Service 2: MySQL (username: hams_user, password: hams_pass, DB: hamsdb).
+2.	How will you run both containers? [2M]
+3.	If you update the app code, how do you rebuild services in Docker Compose? [3M]
+4.	How do you confirm patient records persist after restarting containers? [3M]
+5.	Which command stops all containers but keeps database data? [2M]
+Part I – SRS (10 Marks)
+Q1. Abstract (2M)
+The Hospital Appointment Management System (HAMS) is a web-based system that simplifies appointment booking, doctor availability, patient records, billing, and reporting. It reduces manual errors, avoids long queues, and provides an efficient way for patients, doctors, and staff to manage healthcare processes digitally.
+Q2. Functional Requirements (2M)
+1.	Patient registration and login.
+2.	Appointment booking and cancellation.
+3.	Doctor schedule management.
+4.	Billing and payment tracking.
+5.	Report generation (daily/weekly/monthly).
+Q3. Non-Functional Requirements (2M)
+1.	Security (encrypted data and secure login).
+2.	High availability and reliability.
+3.	Scalability for more patients/doctors.
+4.	User-friendly interface.
+5.	Quick response time (<3 sec for major actions).
+Q4. Identification of Users (2M)
+•	Patients → Book/cancel appointments, view bills.
+•	Doctors → Manage schedules, check patient records.
+•	Admins/Staff → Manage doctors, patients, and reports.
+Q5. Modules (2M)
+•	Patient Module
+•	Doctor Module
+•	Appointment Module
+•	Billing Module
+•	Reports Module
+
+Part II – Maven Web App (25 Marks)
+Q1. Fix missing dependencies in pom.xml (8M)
+Add dependencies inside <dependencies>:
+<dependency>
+  <groupId>javax.servlet</groupId>
+  <artifactId>javax.servlet-api</artifactId>
+  <version>4.0.1</version>
+  <scope>provided</scope>
+</dependency>
+<dependency>
+  <groupId>jstl</groupId>
+  <artifactId>jstl</artifactId>
+  <version>1.2</version>
+</dependency>
+Q2. Configure Java 17 (2M)
+<properties>
+  <maven.compiler.source>17</maven.compiler.source>
+  <maven.compiler.target>17</maven.compiler.target>
+</properties>
+Q3. Refresh Maven cache (2M)
+mvn clean install -U
+Q4. Skip JUnit tests (5M)
+mvn clean install -DskipTests
+Q5. Resolve version conflicts (5M)
+Use <dependencyManagement> in pom.xml to force a version.
+Q6. Add JSP + JSTL dependencies (3M)
+<dependency>
+  <groupId>javax.servlet.jsp.jstl</groupId>
+  <artifactId>javax.servlet.jsp.jstl-api</artifactId>
+  <version>1.2.1</version>
+</dependency>
+<dependency>
+  <groupId>org.glassfish.web</groupId>
+  <artifactId>jstl-impl</artifactId>
+  <version>1.2</version>
+</dependency>
+
+Part III – Git Basics (15 Marks)
+Q1. Initialize + push project (5M)
+git init
+git remote add origin https://github.com/user/HAMS.git
+git add .
+git commit -m "Initial Commit"
+git push -u origin main
+Q2. Fix commit message (2M)
+git commit --amend -m "Added Doctor Module"
+Q3. Show modified files (1M)
+git status
+Q4. Compact history (2M)
+git log --oneline
+Q5. Recover deleted file (2M)
+git checkout -- AppointmentServlet.java
+Q6. Clone + switch to branch (3M)
+git clone -b feature/patient https://github.com/teammate/HAMS.git
+
+Part IV – Git Collaboration (20 Marks)
+Q1. Create + switch branch (3M)
+git checkout -b feature/billing
+Q2. List branches (2M)
+git branch -a
+Q3. Delete duplicate branch (2M)
+git branch -d feature/billing
+Q4. Create patch file (5M)
+git diff > billing_fix.patch
+Q5. Apply teammate’s patch (3M)
+git apply billing_fix.patch
+Q6. Combine commits (3M)
+git rebase -i HEAD~3
+Q7. Clone main repo (2M)
+git clone https://github.com/hospital/HAMS.git
+
+Part V – Dockerization (15 Marks)
+Q1. Dockerfile (5M)
+FROM tomcat:9-jdk17
+COPY target/HAMS.war /usr/local/tomcat/webapps/
+EXPOSE 8081
+CMD ["catalina.sh", "run"]
+Q2. Build + run (5M)
+docker build -t hams-app .
+docker run -d -p 8081:8080 hams-app
+Q3. Push to Docker Hub (5M)
+docker tag hams-app deepthisagar7/hams-app
+docker push deepthisagar7/hams-app
+
+Part VI – Docker Compose (15 Marks)
+Q1. docker-compose.yml (5M)
+version: '3'
+services:
+  hams-app:
+    image: deepthisagar7/hams-app
+    ports:
+      - "8081:8080"
+    depends_on:
+      - mysql-db
+
+  mysql-db:
+    image: mysql:8
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_USER: hams_user
+      MYSQL_PASSWORD: hams_pass
+      MYSQL_DATABASE: hamsdb
+    volumes:
+      - db_data:/var/lib/mysql
+
+volumes:
+  db_data:
+Q2. Run containers (2M)
+docker-compose up -d
+Q3. Rebuild services after code update (3M)
+docker-compose up -d --build
+Q4. Confirm persistence (3M)
+Restart containers → check MySQL table data remains.
+Q5. Stop all containers but keep data (2M)
+docker-compose down
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
